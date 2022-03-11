@@ -4,14 +4,14 @@ plugins {
 }
 
 android {
-    compileSdk = 31
+    compileSdk = ConfigExtensions.compileSdkVersion
 
     defaultConfig {
         applicationId = "com.coors.demoproject"
-        minSdk = 21
-        targetSdk = 31
-        versionCode = 1
-        versionName = "1.0"
+        minSdk = ConfigExtensions.minSdkVersion
+        targetSdk = ConfigExtensions.targetSdkVersion
+        versionCode = ConfigExtensions.versionCode
+        versionName = ConfigExtensions.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -19,7 +19,10 @@ android {
     buildTypes {
         getByName("release") {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -33,11 +36,11 @@ android {
 
 dependencies {
 
-    implementation("androidx.core:core-ktx:1.7.0")
-    implementation("androidx.appcompat:appcompat:1.4.1")
-    implementation("com.google.android.material:material:1.5.0")
-    implementation("androidx.constraintlayout:constraintlayout:2.1.3")
-    testImplementation("junit:junit:4.+")
-    androidTestImplementation("androidx.test.ext:junit:1.1.3")
-    androidTestImplementation("androidx.test.espresso:espresso-core:3.4.0")
+    implementation(Dependencies.Deps.androidCoreKtx)
+    implementation(Dependencies.Deps.appCompat)
+    implementation(Dependencies.Deps.materialDesign)
+    implementation(Dependencies.Deps.constraintLayout)
+    testImplementation(Dependencies.Deps.junit)
+    androidTestImplementation(Dependencies.Deps.androidJunit)
+    androidTestImplementation(Dependencies.Deps.espresso)
 }
