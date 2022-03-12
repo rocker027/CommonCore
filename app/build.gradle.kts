@@ -1,10 +1,12 @@
 plugins {
     id("com.android.application")
-    id("kotlin-android")
+//    id("com.android.library")
+    commonPlugins.forEach { id(it) }
 }
 
 android {
     compileSdk = ConfigExtensions.compileSdkVersion
+    buildToolsVersion = ConfigExtensions.buildToolsVersion
 
     defaultConfig {
         applicationId = "com.coors.demoproject"
@@ -34,13 +36,10 @@ android {
     }
 }
 
+importCommonDependencies()
+importHiltDependencies()
+
 dependencies {
 
-    implementation(Dependencies.Deps.androidCoreKtx)
-    implementation(Dependencies.Deps.appCompat)
-    implementation(Dependencies.Deps.materialDesign)
-    implementation(Dependencies.Deps.constraintLayout)
-    testImplementation(Dependencies.Deps.junit)
-    androidTestImplementation(Dependencies.Deps.androidJunit)
-    androidTestImplementation(Dependencies.Deps.espresso)
+
 }

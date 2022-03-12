@@ -1,4 +1,5 @@
 object Versions {
+    const val hilt ="2.28-alpha"
     const val androidJunit = "1.1.3"
     const val gradlePlugin = "4.1.2"
     const val kotlin = "1.5.20"
