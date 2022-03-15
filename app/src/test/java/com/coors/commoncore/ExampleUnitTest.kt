@@ -1,4 +1,4 @@
-package com.coors.demoproject
+package com.coors.commoncore
 
 import org.junit.Test
 

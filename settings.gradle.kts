@@ -1,2 +1,2 @@
-rootProject.name = "DemoProject"
+rootProject.name = "CommonCore"
 include(":app")
