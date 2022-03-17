@@ -21,10 +21,11 @@ object Dependencies {
         val androidTestCore by lazy { "androidx.test:core:${Versions.androidTest}" }
         val androidRules by lazy { "androidx.test:rules:${Versions.androidRules}" }
         val androidRunner by lazy { "androidx.test:runner:${Versions.androidRunner}" }
-        val androidJunitKtx by lazy { "androidx.test.ext:junit-ktx:${Versions.jUnit}" }
+        val androidJunitKtx by lazy { "androidx.test.ext:junit-ktx:${Versions.androidJunit}" }
+
         val hiltAndroid by lazy { "com.google.dagger:hilt-android:${Versions.hilt}" }
-        val hiltViewModel by lazy { "androidx.hilt:hilt-lifecycle-viewmodel:${Versions.hilt}" }
-        val hiltCompiler by lazy { "com.google.dagger:hilt-android-compiler:${Versions.hilt}" }
+        val hiltAndroidCompiler by lazy { "com.google.dagger:hilt-android-compiler:${Versions.hilt}" }
+
         val kotlinCoroutinesCore by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-core:${Versions.kotlinCoroutines}" }
         val kotlinCoroutinesAndroid by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.kotlinCoroutines}" }
         val kotlinCoroutinesTest by lazy { "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.kotlinCoroutines}" }
@@ -37,6 +38,9 @@ object Dependencies {
         val kotlin by lazy { "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}" }
         val materialDesign by lazy { "com.google.android.material:material:${Versions.material}" }
         val constraintLayout by lazy { "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}" }
+
+        val navigationFragmentKtx by lazy { "androidx.navigation:navigation-fragment-ktx:${Versions.navigation}" }
+        val navigationUiKtx by lazy { "androidx.navigation:navigation-ui-ktx:${Versions.navigation}" }
 
         // lifecycle
         val lifecycleKtx by lazy { "androidx.lifecycle:lifecycle-runtime-ktx:${Versions.lifecycle}" }
@@ -55,20 +59,23 @@ object Dependencies {
         val moshiCodegen = "com.squareup.moshi:moshi-kotlin-codegen:${Versions.moshi}"
         val moshiAdapters = "com.squareup.moshi:moshi-adapters:${Versions.moshi}"
 
+        val archCore = "androidx.arch.core:core-testing:${Versions.archCore}"
         val truth = "com.google.truth:truth:${Versions.truth}"
+        val truthExt = "androidx.test.ext:truth:${Versions.truthExt}"
         val mockkCore = "io.mockk:mockk:${Versions.mockk}"
         val mockkAndroid = "io.mockk:mockk-android:${Versions.mockk}"
         val junit by lazy { "junit:junit:${Versions.jUnit}" }
         val androidJunit by lazy { "androidx.test.ext:junit:${Versions.androidJunit}" }
         val espresso by lazy { "androidx.test.espresso:espresso-core:${Versions.espresso}" }
+        val androidLegacy by lazy { "androidx.legacy:legacy-support-v4:${Versions.androidLegacy}" }
+
     }
 }
 
 val commonPlugins = arrayOf(
     "kotlin-android",
-    "kotlin-android-extensions",
-    "kotlin-kapt",
-    "dagger.hilt.android.plugin"
+    "kotlin-parcelize",
+    "kotlin-kapt"
 )
 
 fun Project.importTestDependencies() {
@@ -92,6 +99,8 @@ fun Project.importTestDependencies() {
         androidTestImplementation(Dependencies.Deps.androidJunit)
         androidTestImplementation(Dependencies.Deps.androidJunitKtx)
         androidTestImplementation(Dependencies.Deps.truth)
+        androidTestImplementation(Dependencies.Deps.truthExt)
+        androidTestImplementation(Dependencies.Deps.archCore)
 
         androidTestImplementation(Dependencies.Deps.kotlinCoroutinesTest)
 
@@ -106,7 +115,6 @@ fun Project.importTestDependencies() {
 fun Project.importCommonDependencies() {
     dependencies {
         val implementation by configurations
-        val kapt by configurations
 
         implementation(Dependencies.Deps.androidCoreKtx)
         implementation(Dependencies.Deps.appCompat)
@@ -114,6 +122,9 @@ fun Project.importCommonDependencies() {
         implementation(Dependencies.Deps.constraintLayout)
         implementation(Dependencies.Deps.activityKtx)
         implementation(Dependencies.Deps.fragmentKtx)
+        implementation(Dependencies.Deps.navigationFragmentKtx)
+        implementation(Dependencies.Deps.navigationUiKtx)
+        implementation(Dependencies.Deps.androidLegacy)
         // lifecycle
         implementation(Dependencies.Deps.lifecycleKtx)
         implementation(Dependencies.Deps.lifecycleViewModelKtx)
@@ -130,15 +141,13 @@ fun Project.importHiltDependencies() {
         val kapt by configurations
 
         implementation(Dependencies.Deps.hiltAndroid)
-        implementation(Dependencies.Deps.hiltViewModel)
-        kapt(Dependencies.Deps.hiltCompiler)
+        kapt(Dependencies.Deps.hiltAndroidCompiler)
     }
 }
 
 fun Project.importThirdPartyDependencies() {
     dependencies {
         val implementation by configurations
-        val kapt by configurations
 
         implementation(Dependencies.Deps.timber)
         implementation(Dependencies.Deps.moshiKotlin)
@@ -150,7 +159,6 @@ fun Project.importThirdPartyDependencies() {
 fun Project.importKotlinCoroutines() {
     dependencies {
         val implementation by configurations
-        val kapt by configurations
 
         implementation(Dependencies.Deps.kotlinCoroutinesCore)
         implementation(Dependencies.Deps.kotlinCoroutinesAndroid)
