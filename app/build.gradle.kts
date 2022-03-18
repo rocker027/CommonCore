@@ -1,3 +1,4 @@
+
 plugins {
     id("com.android.library")
     commonPlugins.forEach { id(it) }
@@ -8,7 +9,6 @@ android {
     buildToolsVersion = ConfigExtensions.buildToolsVersion
 
     defaultConfig {
-        applicationId = "com.coors.demoproject"
         minSdk = ConfigExtensions.minSdkVersion
         targetSdk = ConfigExtensions.targetSdkVersion
         versionCode = ConfigExtensions.versionCode
