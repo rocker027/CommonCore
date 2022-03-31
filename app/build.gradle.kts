@@ -11,8 +11,6 @@ android {
     defaultConfig {
         minSdk = ConfigExtensions.minSdkVersion
         targetSdk = ConfigExtensions.targetSdkVersion
-        versionCode = ConfigExtensions.versionCode
-        versionName = ConfigExtensions.versionName
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
