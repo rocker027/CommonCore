@@ -35,6 +35,7 @@ object Dependencies {
         val activityKtx by lazy { "androidx.activity:activity-ktx:${Versions.activityKtx}" }
         val fragmentKtx by lazy { "androidx.fragment:fragment-ktx:${Versions.fragmentKtx}" }
         val timber by lazy { "com.jakewharton.timber:timber:${Versions.timber}" }
+        val squareupLogcat by lazy { "com.squareup.logcat:logcat:${Versions.squareupLogcat}" }
         val kotlin by lazy { "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.kotlin}" }
         val materialDesign by lazy { "com.google.android.material:material:${Versions.material}" }
         val constraintLayout by lazy { "androidx.constraintlayout:constraintlayout:${Versions.constraintLayout}" }
@@ -149,7 +150,8 @@ fun Project.importThirdPartyDependencies() {
     dependencies {
         val implementation by configurations
 
-        implementation(Dependencies.Deps.timber)
+//        implementation(Dependencies.Deps.timber)
+        implementation(Dependencies.Deps.squareupLogcat)
         implementation(Dependencies.Deps.moshiKotlin)
         implementation(Dependencies.Deps.moshiCodegen)
         implementation(Dependencies.Deps.moshiAdapters)
