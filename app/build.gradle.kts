@@ -1,16 +1,20 @@
+import com.coors.plugin.version.*
 
 plugins {
     id("com.android.library")
-    commonPlugins.forEach { id(it) }
+    id("kotlin-android")
+    id("kotlin-parcelize")
+    id("kotlin-kapt")
+    id("com.coors.plugin.version")
 }
 
 android {
-    compileSdk = ConfigExtensions.compileSdkVersion
-    buildToolsVersion = ConfigExtensions.buildToolsVersion
+    compileSdk = AndroidConfig.compileSdkVersion
+    buildToolsVersion = AndroidConfig.buildToolsVersion
 
     defaultConfig {
-        minSdk = ConfigExtensions.minSdkVersion
-        targetSdk = ConfigExtensions.targetSdkVersion
+        minSdk = AndroidConfig.minSdkVersion
+        targetSdk = AndroidConfig.targetSdkVersion
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -33,10 +37,26 @@ android {
     }
 }
 
-importCommonDependencies()
-importHiltDependencies()
 
 dependencies {
+    implementation(Libs.hiltAndroid)
+    kapt(Libs.hiltAndroidCompiler)
 
+    implementation(Libs.androidCoreKtx)
+    implementation(Libs.appCompat)
+    implementation(Libs.materialDesign)
+    implementation(Libs.constraintLayout)
+    implementation(Libs.activityKtx)
+    implementation(Libs.fragmentKtx)
+    implementation(Libs.navigationFragmentKtx)
+    implementation(Libs.navigationUiKtx)
+    implementation(Libs.androidLegacy)
+    // lifecycle
+    implementation(Libs.lifecycleKtx)
+    implementation(Libs.lifecycleViewModelKtx)
+    implementation(Libs.lifecycleSaveState)
+    implementation(Libs.lifecycleLiveDataKtx)
+    implementation(Libs.lifecycleProcess)
+    implementation(Libs.lifecycleReactLiveStreamsKtx)
 
 }
