@@ -59,4 +59,8 @@ dependencies {
     implementation(Libs.lifecycleProcess)
     implementation(Libs.lifecycleReactLiveStreamsKtx)
 
+    implementation(Libs.retrofit)
+    implementation(Libs.retrofitMoshi)
+    implementation(Libs.okHttpInterceptor)
+
 }
