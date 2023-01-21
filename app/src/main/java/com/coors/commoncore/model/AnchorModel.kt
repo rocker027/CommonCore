@@ -6,6 +6,8 @@ import com.squareup.moshi.Json
 import com.squareup.moshi.JsonClass
 import kotlinx.android.parcel.Parcelize
 import java.io.Serializable
+import java.text.SimpleDateFormat
+import java.util.*
 
 
 @JsonClass(generateAdapter = true)
@@ -62,12 +64,19 @@ data class AnchorModel(
      */
     fun isLiving() = liveStatusValue == LiveStatus.LIVING.status
 
-    fun getPhotoUrl() = "https://img.coors.cn/$hostPhotoId"
+    fun getPhotoUrl(): String {
+        return "https://picsum.photos/id/237/200/300"
+//        "http://m.aalgds.com/api/forehead/system/file/get/${hostPhotoId.orEmpty()}"
+    }
 
     /**
      * 是否已訂閱
      */
     fun isBooking(): Boolean = subscribeStatus == 1
+
+    fun getDisplayTime(): String = SimpleDateFormat("MM-dd HH:mm").format(Date(startDate ?: 0) )
+
+    fun getVsTeamText() = "${homeName.orEmpty()} VS ${awayName.orEmpty()}"
 }
 
 /**
